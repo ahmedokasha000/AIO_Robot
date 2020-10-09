@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="nano" type="stepper_driver_ros_jetson.py" name="motors_control" output="screen" />
+    <node pkg="nano" type="stepper_link.py" name="motors_link" output="screen" />
+
+    <include file="$(find nano)/launch/model_gazebo_2.launch" />
+    <include file="$(find nano)/launch/rplidar.launch" />
+    
+    <node pkg="nano" type="pose_stamped_to_odometry.py" name="pose_convert" output="screen" />
+    <include file="$(find nano)/launch/move_baseSafe.launch"/>
+</launch>
