@@ -6,7 +6,7 @@
             <visual>
                 <geometry>
                     <!--cylinder length=".1" radius="0.13" /-->
-                    <mesh filename="package://nano/meshes/wheel.dae" scale="0.6 0.6 0.6" />
+                    <mesh filename="package://aio_robot/meshes/wheel.dae" scale="0.6 0.6 0.6" />
 
                 </geometry>
                 <origin rpy="${rot} 0 0" xyz="0 0 0.0" />
@@ -15,7 +15,7 @@
             </visual>
             <collision>
                 <geometry>
-                    <mesh filename="package://nano/meshes/wheel.dae" scale="0.6 0.6 0.6" />
+                    <mesh filename="package://aio_robot/meshes/wheel.dae" scale="0.6 0.6 0.6" />
                 </geometry>
                 <origin rpy="${rot} 0 0" xyz="0 0 0.0" />
                 <material name="red" />

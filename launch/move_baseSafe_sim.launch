@@ -73,11 +73,11 @@
     <param name="planner_patience" value="3" />
     <remap from="cmd_vel" to="/cmd_vel"/>
     <param name="recovery_behavior_enabled" value="false" />
-    <rosparam file="$(find nano)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
-    <rosparam file="$(find nano)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find nano)/param/local_costmap_params.yaml" command="load" />
-    <rosparam file="$(find nano)/param/global_costmap_params.yaml" command="load" />
-    <rosparam file="$(find nano)/param/base_local_planner_params.yaml" command="load" />  
+    <rosparam file="$(find aio_robot)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find aio_robot)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find aio_robot)/param/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find aio_robot)/param/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find aio_robot)/param/base_local_planner_params.yaml" command="load" />  
     <param name="global_costmap/global_frame" value="map"/>
     <param name="global_costmap/robot_base_frame" value="base_footprint"/>
     <param name="global_costmap/laser_scan_sensor/sensor_frame" value="laser"/>
@@ -90,4 +90,3 @@
   </node>
 
 </launch>
-

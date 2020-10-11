@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="rover">
-    <xacro:include filename="$(find nano)/urdf/wheel.xacro" />
-    <xacro:include filename="$(find nano)/urdf/gaz.xacro" />
+    <xacro:include filename="$(find aio_robot)/urdf/wheel.xacro" />
+    <xacro:include filename="$(find aio_robot)/urdf/gaz.xacro" />
     <link name="base_footprint" pose="0 0 0 0 0 0" />
     <link name="base_link">
         <visual>
@@ -58,7 +58,7 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://nano/meshes/hokuyo.dae" />
+                <mesh filename="package://aio_robot/meshes/hokuyo.dae" />
             </geometry>
         </visual>
 
