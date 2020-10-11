@@ -3,5 +3,8 @@
         "/opt/ros/melodic/lib/python2.7/dist-packages",
         "/opt/cerevoice/cerevoice_eng/pylib",
         "/opt/cerevoice/cerevoice_aud/pylib"
-    ]
+    ],
+    "python.linting.pylintEnabled": false,
+    "python.linting.pycodestyleEnabled": true,
+    "python.linting.enabled": true
 }
