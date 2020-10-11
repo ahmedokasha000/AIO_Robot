@@ -8,8 +8,6 @@
 
     <group if="$(arg simulation_mode)">
         <!-- these are the arguments you can pass this launch file, for example paused:=true -->
-        <arg name="model" default="$(find aio_robot)/urdf/model.urdf.xacro"/>
-        <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model)" />
         <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
         <include file="$(find gazebo_ros)/launch/empty_world.launch">
             <arg name="world_name" value="$(find aio_robot)/worlds/field2_v1.world"/>
@@ -20,19 +18,27 @@
             <arg name="headless" value="false"/>
         </include>
         <arg name="rvizconfig" default="$(find aio_robot)/rviz/rv.rviz" />
-        <param name="use_gui" value="false"/>
         <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />    
+        <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" name="keboard_control" output="screen" />
+
     </group>
     <group unless="$(arg simulation_mode)">
         <include file="$(find aio_robot)/launch/rplidar.launch" />
         <node pkg="aio_robot" type="stepper_driver_ros_jetson.py" name="motors_control" output="screen" />
         <node pkg="aio_robot" type="stepper_link.py" name="motors_link" output="screen" />
+        <include file="$(find aio_robot)/launch/move_baseSafe.launch"/>
+        <group if="$(arg hardware_with_gui)">
+            <arg name="rvizconfig" default="$(find aio_robot)/rviz/rv.rviz" />
+            <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />   
+        </group>
     </group>    
 
 
-    <include file="$(find aio_robot)/launch/model_gazebo_2.launch" />
+    <include file="$(find aio_robot)/launch/load_robot_model.launch" >
+        <arg name="simulation_mode" default="$(arg simulation_mode)"/>
+    </include>
 
 
     <node pkg="aio_robot" type="pose_stamped_to_odometry.py" name="pose_convert" output="screen" />
-    <include file="$(find aio_robot)/launch/move_baseSafe.launch"/>
+    
 </launch>
