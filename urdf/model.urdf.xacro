@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="rover">
+    <xacro:arg name="simulation_enabled" default="true"/>
+    <xacro:if value="$(arg simulation_enabled)">
+        <xacro:include filename="$(find aio_robot)/urdf/gaz.xacro" />
+
+    </xacro:if>
     <xacro:include filename="$(find aio_robot)/urdf/wheel.xacro" />
     <link name="base_footprint" pose="0 0 0 0 0 0" />
     <link name="base_link">

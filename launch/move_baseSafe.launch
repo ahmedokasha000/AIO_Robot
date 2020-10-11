@@ -1,7 +1,11 @@
 <!-- move base -->
 <launch>
   <!--master auto="start"/-->
-  <include file="$(find aio_robot)/launch/hector_slam.launch" />
+  <arg name="simulation_enabled" default="false"/>
+  
+  <include file="$(find aio_robot)/launch/hector_slam.launch">
+    <arg name="simulation_enabled" value="$(arg simulation_enabled)"/>
+  </include>
   <node pkg="move_base" type="move_base" respawn="false" name="move_base_node" output="screen">
     <param name="footprint_padding" value="0.03" />
     <param name="controller_frequency" value="5.0" />
