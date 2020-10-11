@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="aio_robot" type="motors_control_v2.py" name="motors_control" output="screen" />
+
+    <include file="$(find aio_robot)/launch/model_gazebo_2.launch" />
+    <include file="$(find aio_robot)/launch/rplidar.launch" />
+    
+    <node pkg="aio_robot" type="pose_stamped_to_odometry.py" name="pose_convert" output="screen" />
+    <!--include file="$(find aio_robot)/launch/move_baseSafe.launch"/-->
+    <arg name="rvizconfig" default="$(find aio_robot)/rviz/rv.rviz" />
+    <param name="use_gui" value="false"/>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+</launch>

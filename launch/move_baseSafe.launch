@@ -1,0 +1,30 @@
+<!-- move base -->
+<launch>
+  <!--master auto="start"/-->
+  <include file="$(find aio_robot)/launch/hector_slam.launch" />
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base_node" output="screen">
+    <param name="footprint_padding" value="0.03" />
+    <param name="controller_frequency" value="5.0" />
+    <param name="controller_patience" value="3.0" />
+    <param name="oscillation_timeout" value="15.0" />
+    <param name="oscillation_distance" value="0.1" />
+    <param name="planner_patience" value="3" />
+    <remap from="cmd_vel" to="/cmd_vel"/>
+    <param name="recovery_behavior_enabled" value="false" />
+    <rosparam file="$(find aio_robot)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find aio_robot)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find aio_robot)/param/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find aio_robot)/param/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find aio_robot)/param/base_local_planner_params.yaml" command="load" />  
+    <param name="global_costmap/global_frame" value="map"/>
+    <param name="global_costmap/robot_base_frame" value="base_footprint"/>
+    <param name="global_costmap/laser_scan_sensor/sensor_frame" value="laser"/>
+    <param name="global_costmap/laser_scan_sensor/topic" value="/scan"/>    
+    <param name="local_costmap/global_frame" value="map"/>
+    <param name="local_costmap/robot_base_frame" value="base_footprint"/>
+    <param name="local_costmap/laser_scan_sensor/sensor_frame" value="laser"/>
+    <param name="local_costmap/laser_scan_sensor/topic" value="/scan"/>
+    <param name="local_costmap/obstacle_layer/laser_scan_sensor/topic" value="/scan"/>
+  </node>
+
+</launch>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+    <node pkg="aio_robot" type="stepper_driver_ros_jetson.py" name="motors_control" output="screen" />
+    <node pkg="aio_robot" type="stepper_link.py" name="motors_link" output="screen" />
+
+    <include file="$(find aio_robot)/launch/model_gazebo_2.launch" />
+    <include file="$(find aio_robot)/launch/rplidar.launch" />
+    
+    <node pkg="aio_robot" type="pose_stamped_to_odometry.py" name="pose_convert" output="screen" />
+    <include file="$(find aio_robot)/launch/move_baseSafe.launch"/>
+</launch>
