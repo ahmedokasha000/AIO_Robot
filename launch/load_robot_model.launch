@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <launch>
+  <arg name="simulation_mode" default="false"/>
   <!-- these are the arguments you can pass this launch file, for example paused:=true -->
   <arg name="model" default="$(find aio_robot)/urdf/model.urdf.xacro"/>
-  <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model)" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model) simulation_enabled:=$(arg simulation_mode)" />
 
 
   <!-- push robot_description to factory and spawn robot in gazebo -->

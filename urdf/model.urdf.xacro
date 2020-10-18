@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="rover">
+    <xacro:arg name="simulation_enabled" default="false"/>
+    <xacro:if value="$(arg simulation_enabled)">
+        <xacro:include filename="$(find aio_robot)/urdf/gaz.xacro" />
+    </xacro:if>
     <xacro:include filename="$(find aio_robot)/urdf/wheel.xacro" />
     <link name="base_footprint" pose="0 0 0 0 0 0" />
     <link name="base_link">
@@ -32,8 +37,6 @@
     </material>
 
 
-
-
     <xacro:default_wheel name="right_back_wheel" rot="3.1415" />
     <xacro:default_wheel name="right_forward_wheel" rot="3.1415" />
 
@@ -42,8 +45,8 @@
     <xacro:default_wheel name="left_back_wheel" rot="0.0" />
 
     <xacro:default_wheel name="left_forward_wheel" rot="0.0" />
-    
-    <xacro:wheel_joint child_name="left_forward_wheel"  cenx="0.1" ceny="-0.13" />
+
+    <xacro:wheel_joint child_name="left_forward_wheel" cenx="0.1" ceny="-0.13" />
     <xacro:wheel_joint child_name="left_back_wheel" cenx="-0.1" ceny="-0.13" />
 
     <link name="laser">
@@ -52,7 +55,7 @@
             <geometry>
                 <box size="0.1 0.1 0.1" />
             </geometry>
-        </collision> 
+        </collision>
 
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />

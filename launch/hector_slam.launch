@@ -4,8 +4,8 @@
 
   <!--master auto="start"/-->
   <arg name="geotiff_map_file_path" default="$(find hector_geotiff)/maps"/>
-
-  <param name="/use_sim_time" value="false"/> <!--should be false when using the real RPLIDAR-->
+  <arg name="simulation_enabled"/>
+  <param name="/use_sim_time" value="$(arg simulation_enabled)"/> <!--should be false when using the real RPLIDAR-->
 
   <arg name="tf_map_scanmatch_transform_frame_name" default="scanmatcher_frame"/>
   <arg name="base_frame" default="base_link"/>
@@ -50,12 +50,6 @@
     <param name="scan_subscriber_queue_size" value="$(arg scan_subscriber_queue_size)"/>
     <param name="scan_topic" value="$(arg scan_topic)"/>
     
-    <!-- Debug parameters -->
-    <!--
-      <param name="output_timing" value="false"/>
-      <param name="pub_drawings" value="true"/>
-      <param name="pub_debug_output" value="true"/>
-    -->
     <param name="tf_map_scanmatch_transform_frame_name" value="$(arg tf_map_scanmatch_transform_frame_name)" />
   </node>
     
