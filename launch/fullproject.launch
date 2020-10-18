@@ -5,6 +5,9 @@
     <arg name="simulation_mode" default="false"/>
 
     <arg name="hardware_with_gui" default="false"/>
+    <include file="$(find aio_robot)/launch/load_robot_model.launch" >
+        <arg name="simulation_mode" default="$(arg simulation_mode)"/>
+    </include>
 
     <group if="$(arg simulation_mode)">
         <!-- these are the arguments you can pass this launch file, for example paused:=true -->
@@ -34,9 +37,7 @@
     </group>    
 
 
-    <include file="$(find aio_robot)/launch/load_robot_model.launch" >
-        <arg name="simulation_mode" default="$(arg simulation_mode)"/>
-    </include>
+
 
 
     <node pkg="aio_robot" type="pose_stamped_to_odometry.py" name="pose_convert" output="screen" />
