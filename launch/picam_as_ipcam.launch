@@ -1,5 +1,5 @@
 <launch>
-    <arg name="cam_ip" type="string" default="http://192.168.1.74:8000/stream.mjpg"/>
+    <arg name="cam_ip" default="http://192.168.1.74:8000/stream.mjpg"/>
 
     <node pkg="ipcamera_driver" type="ipcamera_driver" name="picam_asip" output="screen">
         <param name="video_url" type="string" value="$(arg cam_ip)" />
