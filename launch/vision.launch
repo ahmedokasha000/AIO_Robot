@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <launch>
-    <include file="$(find aio_robot)/launch/webcam.launch"/>
-    <!-- <include file="$(find aio_robot)/launch/picam_as_ipcam.launch"/>  -->
+    <!-- <include file="$(find aio_robot)/launch/webcam.launch"/> -->
+    <include file="$(find aio_robot)/launch/picam_as_ipcam.launch"/> 
     <include file="$(find aio_robot)/launch/YOLO_net.launch"/>  
 </launch>
