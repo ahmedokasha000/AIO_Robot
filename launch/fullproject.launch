@@ -3,7 +3,7 @@
 
 <launch>
     <arg name="simulation_mode" default="false"/>
-
+    <arg name="navigation_enabled" default="true"/>
     <arg name="hardware_with_gui" default="false"/>
     <include file="$(find aio_robot)/launch/load_robot_model.launch" >
         <arg name="simulation_mode" default="$(arg simulation_mode)"/>
@@ -26,14 +26,18 @@
 
     </group>
     <group unless="$(arg simulation_mode)">
-        <include file="$(find aio_robot)/launch/rplidar.launch" />
+        
         <node pkg="aio_robot" type="stepper_driver_ros_jetson.py" name="motors_control" output="screen" />
         <node pkg="aio_robot" type="stepper_link.py" name="motors_link" output="screen" />
-        <include file="$(find aio_robot)/launch/move_baseSafe.launch"/>
         <group if="$(arg hardware_with_gui)">
             <arg name="rvizconfig" default="$(find aio_robot)/rviz/rv.rviz" />
             <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />   
         </group>
+        <group if="$(arg navigation_enabled)">
+            <include file="$(find aio_robot)/launch/rplidar.launch" />
+            <include file="$(find aio_robot)/launch/move_baseSafe.launch"/>
+        </group>
+
     </group>    
 
 
