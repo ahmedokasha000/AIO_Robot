@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Use YOLOv3 -->
+  <arg name="network_param_file"         default="$(find aio_robot)/param/yolo/yolov3-tiny.yaml"/>
+  <arg name="ros_param_file"             default="$(find aio_robot)/param/yolo/ros.yaml"/>
+  <arg name="weight_cfg_path"         default="$(find aio_robot)/param/yolo"/>
+
+  <!-- <arg name="image_topic" default="/webcam/image_raw" /> -->
+  <arg name="image_topic" default="cam0/image_raw" />
+ 
+
+  <!-- Include main launch file -->
+  <include file="$(find darknet_ros)/launch/darknet_ros.launch">
+    <arg name="network_param_file"    value="$(arg network_param_file)"/>
+    <arg name="ros_param_file"    value="$(arg ros_param_file)"/>
+    <arg name="yolo_weights_path" value="$(arg weight_cfg_path)"/>
+    <arg name="yolo_config_path" value="$(arg weight_cfg_path)"/>
+    <arg name="image" value="$(arg image_topic)" />
+  </include>
+    
+
+</launch>
