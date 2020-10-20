@@ -5,8 +5,8 @@
   <arg name="ros_param_file"             default="$(find aio_robot)/param/yolo/ros.yaml"/>
   <arg name="weight_cfg_path"         default="$(find aio_robot)/param/yolo"/>
 
-  <!-- <arg name="image_topic" default="/webcam/image_raw" /> -->
-  <arg name="image_topic" default="/cam0/image_raw" />
+  <arg name="image_topic" default="/webcam/image_raw" />
+  <!-- <arg name="image_topic" default="/cam0/image_raw" /> -->
  
 
   <!-- Include main launch file -->
