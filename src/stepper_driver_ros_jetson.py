@@ -7,7 +7,7 @@ import time
 from math import pi
 from math import copysign
 
-PINS_CONFIG = {"STEP_L": 4, "DIR_L": 17,
+PINS_CONFIG = {"STEP_L": 23, "DIR_L": 24,
                "STEP_R": 27, "DIR_R": 22}
 
 
