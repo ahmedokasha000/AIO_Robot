@@ -7,8 +7,8 @@ import time
 from math import pi
 from math import copysign
 
-PINS_CONFIG = {"STEP_L": 23, "DIR_L": 24,
-               "STEP_R": 27, "DIR_R": 22}
+PINS_CONFIG = {"STEP_R": 23, "DIR_R": 24,
+               "STEP_L": 27, "DIR_L": 22}
 
 
 class motors ():
