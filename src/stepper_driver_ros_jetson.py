@@ -2,7 +2,7 @@
 import RPi.GPIO as GPIO
 import rospy
 from std_msgs.msg import String
-from std_msgs.msg import Int32MultiArray
+from std_msgs.msg import Int64MultiArray
 import time
 from math import pi
 from math import copysign
@@ -14,7 +14,7 @@ PINS_CONFIG = {"STEP_R": 23, "DIR_R": 24,
 class motors ():
     def __init__(self, pins_config, init_speed=0):
         self.leftSub = rospy.Subscriber(
-            "/stepper_cmd", Int32MultiArray, self.stepper_callback)
+            "/stepper_cmd", Int64MultiArray, self.stepper_callback)
         self.pins_config = pins_config
         self.init_pins()
         self.l_speed = init_speed
