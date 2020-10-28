@@ -2,7 +2,7 @@
 import rospy
 from std_msgs.msg import String
 from geometry_msgs.msg import Twist
-from std_msgs.msg import Int16MultiArray
+from std_msgs.msg import Int32MultiArray
 import math as m
 
 STEPS_PER_REV = 400
@@ -24,12 +24,12 @@ class SteppersLink():
         self.wheel_seperation = wheel_seperation
         self.cmdSub = rospy.Subscriber("/cmd_vel", Twist, self.process_cmd)
         self.stepperPub = rospy.Publisher(
-            "stepper_cmd", Int16MultiArray, queue_size=1)
+            "stepper_cmd", Int32MultiArray, queue_size=1)
 
     @staticmethod
     def get_del_time_us(diameter, speed, steps_per_rev):
         wait_bet_high_low_us = (1e6*m.pi*diameter)/(speed*steps_per_rev*2)
-        return int(wait_bet_high_low_us)
+        return int16(wait_bet_high_low_us)
 
     def process_cmd(self, msg):
         if (msg.linear.x != 0.0 or msg.angular.z != 0.0):
@@ -53,7 +53,7 @@ class SteppersLink():
                 self.wheel_diameter, speed_wish_left, self.steps_per_rev)
         else:
             self.result_array = [0, 0, 0, 0]
-        mes_to_motors = Int16MultiArray()
+        mes_to_motors = Int32MultiArray()
         mes_to_motors.data = self.result_array
         self.stepperPub.publish(mes_to_motors)
 
