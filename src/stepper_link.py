@@ -29,7 +29,7 @@ class SteppersLink():
     @staticmethod
     def get_del_time_us(diameter, speed, steps_per_rev):
         wait_bet_high_low_us = (1e6*m.pi*diameter)/(speed*steps_per_rev*2)
-        return int16(wait_bet_high_low_us)
+        return int(wait_bet_high_low_us)
 
     def process_cmd(self, msg):
         if (msg.linear.x != 0.0 or msg.angular.z != 0.0):
